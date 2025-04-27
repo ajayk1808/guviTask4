@@ -1,0 +1,31 @@
+// File: src/com/university/weekday/WeekDaysArray.java
+
+
+import java.util.Scanner; // for taking user input
+
+public class WeekDaysArray {
+    public static void main(String[] args) {
+        // Create an array of weekdays, starting from Sunday at index 0
+        String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+        Scanner scanner = new Scanner(System.in); // Scanner to read input
+
+        try {
+            // Asking user to enter day position
+            System.out.print("Enter the day index (0-6): ");
+            int dayIndex = scanner.nextInt(); // reading integer input
+
+            // Trying to access the array element
+            System.out.println("Day is: " + weekdays[dayIndex]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Handling if user enters wrong index like 7 or -1
+            System.out.println("Invalid day index! Please enter a value between 0 and 6.");
+        } catch (Exception e) {
+            // Handling any other unexpected exceptions
+            System.out.println("Invalid input! Please enter a valid number.");
+        } finally {
+            // Closing the scanner to prevent resource leak
+            scanner.close();
+        }
+    }
+}
