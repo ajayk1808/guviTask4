@@ -1,0 +1,64 @@
+// File: src/com/university/voter/Voter.java
+
+package com.university.voter;
+
+// Custom unchecked exception (extending RuntimeException)
+class InvalidVoterAgeException extends RuntimeException {
+    public InvalidVoterAgeException(String message) {
+        super(message); // calling parent constructor
+    }
+}
+
+// Voter class
+public class Voter {
+    // Attributes
+    private int voterId;
+    private String name;
+    private int age;
+
+    // Constructor to initialize Voter
+    public Voter(int voterId, String name, int age) {
+        if (age < 18) {
+            // Throwing custom unchecked exception if age < 18
+            throw new InvalidVoterAgeException("invalid age for voter");
+        }
+        this.voterId = voterId;
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display voter information
+    public void displayVoterInfo() {
+        System.out.println("Voter Details:");
+        System.out.println("Voter ID: " + voterId);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+// File: src/com/university/voter/VoterMain.java
+
+package com.university.voter;
+
+public class VoterMain {
+    public static void main(String[] args) {
+        try {
+            // Creating a valid voter
+            Voter voter1 = new Voter(201, "Ajay Kumar", 20);
+            voter1.displayVoterInfo();
+
+            // Uncomment below to check exception case:
+            // Voter voter2 = new Voter(202, "Sanjay", 16);
+
+        } catch (InvalidVoterAgeException e) {
+            System.out.println("Exception occurred: " + e.getMessage());
+        }
+    }
+}
+Example 1: Valid Voter
+Input:
+Voter voter1 = new Voter(201, "Ajay Kumar", 20);
+ouput:
+Voter Details:
+Voter ID: 201
+Name: Ajay Kumar
+Age: 20
