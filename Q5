@@ -1,0 +1,87 @@
+// File: src/com/university/stack/IntegerStackManager.java
+
+package com.university.stack;
+
+import java.util.Stack;
+import java.util.Scanner;
+
+public class IntegerStackManager {
+
+    // Create a Stack to store Integers
+    private Stack<Integer> stack;
+
+    // Constructor to initialize the stack
+    public IntegerStackManager() {
+        stack = new Stack<>();
+    }
+
+    // Method to push an element onto the stack
+    public void pushElement(int element) {
+        stack.push(element);
+        System.out.println(element + " pushed to stack.");
+    }
+
+    // Method to pop an element from the stack
+    public void popElement() {
+        if (stack.isEmpty()) {
+            System.out.println("Stack is empty. Cannot pop element.");
+        } else {
+            int removedElement = stack.pop();
+            System.out.println(removedElement + " popped from stack.");
+        }
+    }
+
+    // Method to check if the stack is empty
+    public void checkIfEmpty() {
+        if (stack.isEmpty()) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.println("Stack is not empty.");
+        }
+    }
+
+    // Main method to test the program
+    public static void main(String[] args) {
+        IntegerStackManager manager = new IntegerStackManager(); // create object
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            // Display Menu
+            System.out.println("\n--- Integer Stack Manager ---");
+            System.out.println("1. Push Element");
+            System.out.println("2. Pop Element");
+            System.out.println("3. Check if Stack is Empty");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter integer to push: ");
+                    int element = scanner.nextInt();
+                    manager.pushElement(element);
+                    break;
+
+                case 2:
+                    manager.popElement();
+                    break;
+
+                case 3:
+                    manager.checkIfEmpty();
+                    break;
+
+                case 4:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please select from 1-4.");
+            }
+
+        } while (choice != 4);
+
+        scanner.close(); // close scanner
+    }
+}
